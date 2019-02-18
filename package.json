@@ -2,6 +2,7 @@
 	"name": "clipimg-vscode",
 	"displayName": "ClipImg",
 	"description": "Extension that provides the ability to upload image from clipboard to Azure Storage",
+	"publisher": "gep13",
 	"version": "0.1.0",
 	"icon": "images/clipimg.png",
 	"galleryBanner": {

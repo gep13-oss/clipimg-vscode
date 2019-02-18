@@ -1,65 +1,49 @@
-# clipimg-vscode README
+# ClipImg Visual Studio Code Extension
 
-This is the README for your extension "clipimg-vscode". After writing up a brief description, we recommend including the following sections.
+This extension brings support for [ClipImg](https://github.com/gep13/clipimg-vscode) to Visual Studio Code.
 
-## Features
+## Table of Contents
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+1. [What is ClipImg?](#what-is-clipimg)
+1. [Commands](#commands)
+1. [Resources](#resources)
+1. [Installation](#installation)
+1. [Documentation](#documentation)
+1. [Contributing](#contributing)
+1. [Releases](#releases)
 
-For example if there is an image subfolder under your extension project workspace:
+## What is ClipImg?
 
-\!\[feature X\]\(images/feature-x.png\)
+Provide more details here...
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Commands
 
-## Requirements
+The ClipImg Visual Studio Code provides the following commands:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+* `TODO`
 
-## Extension Settings
+## Resources
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Short YouTube videos of each of the releases of this extension can be found in this [playlist]().
 
-For example:
+## Installation
 
-This extension contributes the following settings:
+You can either install this extension in the normal way, or you can choose to install using Chocolatey:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+```powershell
+choco install clipimg-vscode
+```
 
-## Known Issues
+## Documentation
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+You can find the documentation that is available for this project [here](https://gep13.github.io/clipimg-vscode/).
 
-## Release Notes
+## Contributing
 
-Users appreciate release notes as you update your extension.
+If you would like to see any features added for this VS Code Extension, feel free to raise an [issue](https://github.com/gep13/clipimg-vscode/issues), and if possible, a follow up pull request.
 
-### 1.0.0
+You can also join in the Gitter Chat [![Join the chat at https://gitter.im/gep13-oss/community](https://badges.gitter.im/gep13-oss/community.svg)](https://gitter.im/gep13-oss/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Initial release of ...
+## Releases
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+To find out what was released in each version of this extension, check ou
