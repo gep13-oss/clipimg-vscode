@@ -1,0 +1,1 @@
+# clipimg-vscode
