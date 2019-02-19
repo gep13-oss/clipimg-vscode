@@ -11,7 +11,7 @@ export class CommandManager {
 
   registerCommands(context: vscode.ExtensionContext) {
     for (const c of this.commands) {
-      const cmd = vscode.commands.registerCommand(c.id, c.execute);
+      const cmd = vscode.commands.registerCommand(c.id, c.execute, c);
       context.subscriptions.push(cmd);
     }
   }
