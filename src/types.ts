@@ -1,6 +1,7 @@
 const TYPES = {
   Command: Symbol("Command"),
-  CommandManager: Symbol("CommandManager")
+  CommandManager: Symbol("CommandManager"),
+  MessageHandler: Symbol("MessageHandler")
 };
 
 export default TYPES;
