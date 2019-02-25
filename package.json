@@ -47,7 +47,7 @@
 		"vscode": "^1.1.30",
 		"tslint": "^5.13.0",
 		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"@types/mocha": "^5.2.6"
 	},
 	"dependencies": {
 		"inversify": "^5.0.1",
