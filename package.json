@@ -48,5 +48,9 @@
 		"tslint": "^5.12.1",
 		"@types/node": "^10.12.21",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"inversify": "^5.0.1",
+		"reflect-metadata": "^0.1.13"
 	}
 }
