@@ -1,0 +1,13 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "daily"
+    target_branch: "develop"
+    version_requirement_updates: "auto"
+    default_reviewers:
+      - "gep13"
+    default_assignees:
+      - "gep13"
+    default_labels:
+      - "dependabot"
