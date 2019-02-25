@@ -1,18 +1,18 @@
 import { injectable, inject } from "inversify";
 import { ICommand } from "./icommand";
-import { MessageHandler } from '../message-handler';
+import { MessageService } from '../message-service';
 import TYPES from '../types';
 
 @injectable()
 export class HelloWorldCommand implements ICommand {
 
   constructor(
-    @inject(TYPES.MessageHandler) private messageHandler: MessageHandler
+    @inject(TYPES.MessageService) private messageService: MessageService
   ) {}
 
   get id() { return "extension.helloWorld"; }
 
   execute(...args: any[]) {
-    this.messageHandler.showInformation('Hello gep13 stream!');
+    this.messageService.showInformation('Hello gep13 stream!');
   }
 }
