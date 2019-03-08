@@ -47,9 +47,14 @@ export class ClipboardService {
             powershell.on('exit', function (code, signal) {
                 // console.log('exit', code, signal);
             });
-            powershell.stdout.on('data', function (data: Buffer) {
-                callback(path, data.toString().trim());
-            });
+
+            if(powershell.stdout) {
+                powershell.stdout.on('data', function (data: Buffer) {
+                    callback(path, data.toString().trim());
+                });
+            } else {
+                context.messageService.showError('Unable to access stdout of PowerShell command');
+            }
         }
         else if (platform === 'darwin') {
             // Mac
@@ -62,29 +67,39 @@ export class ClipboardService {
             ascript.on('exit', function (code, signal) {
                 // console.log('exit',code,signal);
             });
-            ascript.stdout.on('data', function (data: Buffer) {
-                callback(path, data.toString().trim());
-            });
+
+            if(ascript.stdout) {
+                ascript.stdout.on('data', function (data: Buffer) {
+                    callback(path, data.toString().trim());
+                });
+            } else {
+                context.messageService.showError('Unable to access stdout of ascript command');
+            }
         } else {
             // Linux 
 
             let scriptPath = context.fileSystemService.combinePath(__dirname, '../resources/linux.sh');
 
-            let ascript = spawn('sh', [scriptPath, path]);
-            ascript.on('error', function (e: any) {
+            let bash = spawn('sh', [scriptPath, path]);
+            bash.on('error', function (e: any) {
                 context.messageService.showError(e);
             });
-            ascript.on('exit', function (code, signal) {
+            bash.on('exit', function (code, signal) {
                 // console.log('exit',code,signal);
             });
-            ascript.stdout.on('data', function (data: Buffer) {
-                let result = data.toString().trim();
-                if (result == "no xclip") {
-                    context.messageService.showInformation('You need to install xclip command first.');
-                    return;
-                }
-                callback(path, result);
-            });
+
+            if(bash.stdout) {
+                bash.stdout.on('data', function (data: Buffer) {
+                    let result = data.toString().trim();
+                    if (result == "no xclip") {
+                        context.messageService.showInformation('You need to install xclip command first.');
+                        return;
+                    }
+                    callback(path, result);
+                });
+            } else {
+                context.messageService.showError('Unable to access stdout of bash command');
+            }
         }
     }
 }
