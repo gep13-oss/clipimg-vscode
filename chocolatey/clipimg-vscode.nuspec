@@ -23,7 +23,7 @@ This extension brings support for ClipImg to Visual Studio Code.
     <releaseNotes>
 Full release notes found on [GitHub Release Page](https://github.com/gep13-oss/clipimg-vscode/releases)</releaseNotes>
     <dependencies>
-      <dependency id="vscode" version="1.30.0" /> <!-- Should be set to the minimum version the extension supports -->
+      <dependency id="vscode" version="1.33.0" /> <!-- Should be set to the minimum version the extension supports -->
       <dependency id="chocolatey-vscode.extension" version="1.0.0" />
     </dependencies>
   </metadata>
