@@ -1,13 +1,23 @@
 #load "nuget:https://www.nuget.org/api/v2?package=Cake.VsCode.Recipe&version=0.1.0"
 
-Environment.SetVariableNames();
+if(BuildSystem.IsLocalBuild)
+{
+    Environment.SetVariableNames(
+        githubUserNameVariable: "CLIPIMGVSCODE_GITHUB_USERNAME",
+        githubPasswordVariable: "CLIPIMGVSCODE_GITHUB_PASSWORD"
+    );
+}
+else
+{
+    Environment.SetVariableNames();
+}
 
 BuildParameters.SetParameters(context: Context,
                             buildSystem: BuildSystem,
                             title: "clipimg-vscode",
-                            repositoryOwner: "gep13",
+                            repositoryOwner: "gep13-oss",
                             repositoryName: "clipimg-vscode",
-                            appVeyorAccountName: "gep13",
+                            appVeyorAccountName: "gep13oss",
                             shouldRunGitVersion: true);
 
 BuildParameters.PrintParameters(Context);
