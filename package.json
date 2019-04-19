@@ -10,12 +10,12 @@
 		"theme": "light"
 	},
 	"bugs": {
-		"url": "https://github.com/gep13/clipimg-vscode/issues"
+		"url": "https://github.com/gep13-oss/clipimg-vscode/issues"
 	},
-	"homepage": "https://github.com/gep13/clipimg-vscode",
+	"homepage": "https://github.com/gep13-oss/clipimg-vscode",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/gep13/clipimg-vscode"
+		"url": "https://github.com/gep13-oss/clipimg-vscode"
 	},
 	"engines": {
 		"vscode": "^1.31.0"
