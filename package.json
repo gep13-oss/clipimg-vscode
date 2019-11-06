@@ -43,7 +43,7 @@
 		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"typescript": "^3.5.3",
+		"typescript": "^3.7.2",
 		"vscode": "^1.1.35",
 		"tslint": "^5.18.0",
 		"@types/node": "^12.6.8",
