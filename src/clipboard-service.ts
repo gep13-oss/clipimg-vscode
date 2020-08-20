@@ -2,19 +2,46 @@ import { injectable, inject } from 'inversify';
 import { spawn } from 'child_process';
 import TYPES from './types';
 import { FileSystemService } from './filesystem-service';
-import { MessageService } from './message-service';
 
 @injectable()
 export class ClipboardService {
     constructor(
-        @inject(TYPES.FileSystemService) private fileSystemService: FileSystemService,
-        @inject(TYPES.MessageService) private messageService: MessageService
+        @inject(TYPES.FileSystemService) private fileSystemService: FileSystemService
       ){}
 
-    getContentsAndSaveToFile(path: string, callback: (imagePath: string, imagePathFromScript: string) => void) {
+    getContentsAndSaveToFile(
+        path: string,
+        callback: (imagePath: string, imagePathFromScript: string) => void,
+        errorCallback: (imagePath: string, error: string) => void
+        ) {
         let context = this;
 
-        if (!path) return;
+        if (!path) { 
+            return; 
+        }
+
+        let error = false;
+        let reportError = (errorMessage: string) => {
+            error = true;
+            errorCallback(path, errorMessage);
+        };
+
+        let processStdoutCallback = (data: Buffer) => {
+            let stringData = data.toString().trim();
+            if (error) {
+                reportError(stringData);
+            }
+            else if (stringData === "no image") {
+                reportError('No image found.');
+            }
+            else if (stringData === "no xclip") {
+                reportError('You need to install xclip command first.');
+            }
+            else {
+                callback(path, stringData);
+            }
+        };
+
 
         let platform = process.platform;
         if (platform === 'win32') {
@@ -22,9 +49,9 @@ export class ClipboardService {
             const scriptPath = context.fileSystemService.combinePath(__dirname, '../resources/pc.ps1');
 
             let command = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
-            let powershellExisted = context.fileSystemService.directoryExists(command)
+            let powershellExisted = context.fileSystemService.directoryExists(command);
             if (!powershellExisted) {
-                command = "powershell"
+                command = "powershell";
             }
 
             const powershell = spawn(command, [
@@ -37,11 +64,12 @@ export class ClipboardService {
                 '-file', scriptPath,
                 path
             ]);
+
             powershell.on('error', function (e: any) {
-                if (e.code == "ENOENT") {
-                    context.messageService.showError(`The powershell command is not in you PATH environment variables.Please add it and retry.`);
+                if (e.code === "ENOENT") {
+                    reportError(`The powershell command is not in you PATH environment variables.Please add it and retry.`);
                 } else {
-                    context.messageService.showError(e);
+                    reportError(e);
                 }
             });
             powershell.on('exit', function (code, signal) {
@@ -49,11 +77,9 @@ export class ClipboardService {
             });
 
             if(powershell.stdout) {
-                powershell.stdout.on('data', function (data: Buffer) {
-                    callback(path, data.toString().trim());
-                });
+                powershell.stdout.on('data', processStdoutCallback);
             } else {
-                context.messageService.showError('Unable to access stdout of PowerShell command');
+                reportError('Unable to access stdout of PowerShell command');
             }
         }
         else if (platform === 'darwin') {
@@ -62,18 +88,16 @@ export class ClipboardService {
 
             let ascript = spawn('osascript', [scriptPath, path]);
             ascript.on('error', function (e: any) {
-                context.messageService.showError(e);
+                reportError(e);
             });
             ascript.on('exit', function (code, signal) {
                 // console.log('exit',code,signal);
             });
 
             if(ascript.stdout) {
-                ascript.stdout.on('data', function (data: Buffer) {
-                    callback(path, data.toString().trim());
-                });
+                ascript.stdout.on('data', processStdoutCallback);
             } else {
-                context.messageService.showError('Unable to access stdout of ascript command');
+                reportError('Unable to access stdout of ascript command');
             }
         } else {
             // Linux 
@@ -82,23 +106,16 @@ export class ClipboardService {
 
             let bash = spawn('sh', [scriptPath, path]);
             bash.on('error', function (e: any) {
-                context.messageService.showError(e);
+                reportError(e);
             });
             bash.on('exit', function (code, signal) {
                 // console.log('exit',code,signal);
             });
 
             if(bash.stdout) {
-                bash.stdout.on('data', function (data: Buffer) {
-                    let result = data.toString().trim();
-                    if (result == "no xclip") {
-                        context.messageService.showInformation('You need to install xclip command first.');
-                        return;
-                    }
-                    callback(path, result);
-                });
+                bash.stdout.on('data', processStdoutCallback);
             } else {
-                context.messageService.showError('Unable to access stdout of bash command');
+                reportError('Unable to access stdout of bash command');
             }
         }
     }

@@ -25,14 +25,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.clipImg"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.clipImg",
+				"title": "Paste Image as Markdown"
 			}
 		]
 	},
@@ -53,6 +53,7 @@
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
+		"guid-typescript": "^1.0.9",
 		"inversify": "^5.0.1",
 		"reflect-metadata": "^0.1.13"
 	}
