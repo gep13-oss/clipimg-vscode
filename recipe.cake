@@ -20,7 +20,7 @@ BuildParameters.SetParameters(context: Context,
                             appVeyorAccountName: "gep13oss",
                             shouldRunGitVersion: true,
                             vsceVersionNumber:"1.78.0",
-                            typeScriptVersionNumber: "3.9.7");
+                            typeScriptVersionNumber: "4.0.2");
 
 BuildParameters.PrintParameters(Context);
 
