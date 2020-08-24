@@ -3,7 +3,8 @@ const TYPES = {
   CommandManager: Symbol("CommandManager"),
   MessageService: Symbol("MessageService"),
   ClipboardService: Symbol("ClipboardService"),
-  FileSystemService: Symbol("FileSystemService")
+  FileSystemService: Symbol("FileSystemService"),
+  BlobStorageService: Symbol("BlobStorageService")
 };
 
 export default TYPES;
