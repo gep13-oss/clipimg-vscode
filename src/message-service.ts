@@ -10,7 +10,7 @@ export class MessageService {
   showWarning(message: string) {
     vscode.window.showWarningMessage(message);
   }
-  
+
   async showQuestion(message: string, options: string): Promise<string | undefined> {
     return await vscode.window.showWarningMessage(message, options);
   }
@@ -19,10 +19,12 @@ export class MessageService {
     vscode.window.showErrorMessage(message);
   }
 
-  async showInput(placeHolder: string, value: string): Promise<any> {
+  async showInput(placeHolder: string, value: string, password: boolean = false): Promise<any> {
     return await vscode.window.showInputBox({
       placeHolder: placeHolder,
-      value: value
+      value: value,
+      ignoreFocusOut: true,
+      password: password
     });
   }
 }

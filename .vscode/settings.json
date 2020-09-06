@@ -17,5 +17,6 @@
         "osascript",
         "windowstyle",
         "xclip"
-    ]
+    ],
+    "clipImg.storageAccountName": "clipimg"
 }

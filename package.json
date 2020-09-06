@@ -34,7 +34,35 @@
 				"command": "extension.clipImg",
 				"title": "Paste Image as Markdown"
 			}
-		]
+		],
+		"keybindings": [
+			{
+				"command": "extension.clipImg",
+				"key": "ctrl+alt+v",
+				"mac": "ctrl+cmd+v"
+			}
+		],
+		"configuration": {
+			"title": "ClipImg",
+			"properties": {
+				"clipImg.storageAccountName": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": null,
+					"description": "Specifies the storage account name to use."
+				},
+				"clipImg.storageAccountContainer": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "clipimg-vscode",
+					"description": "Specifies the storage account container to use."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -53,8 +81,10 @@
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
+		"@azure/storage-blob": "^12.2.0-preview.1",
 		"guid-typescript": "^1.0.9",
 		"inversify": "^5.0.1",
+		"keytar": "^6.0.1",
 		"reflect-metadata": "^0.1.13"
 	}
 }
