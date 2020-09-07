@@ -4,7 +4,8 @@ const TYPES = {
   MessageService: Symbol("MessageService"),
   ClipboardService: Symbol("ClipboardService"),
   FileSystemService: Symbol("FileSystemService"),
-  BlobStorageService: Symbol("BlobStorageService")
+  BlobStorageService: Symbol("BlobStorageService"),
+  TemplateService: Symbol("TemplateService")
 };
 
 export default TYPES;

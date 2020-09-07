@@ -5,23 +5,29 @@ import { MessageService } from './message-service';
 import { BlobServiceClient, StorageSharedKeyCredential, generateBlobSASQueryParameters, ContainerSASPermissions } from '@azure/storage-blob';
 import { setPassword, getPassword } from 'keytar';
 import { error } from 'console';
+import { TemplateService } from './template-service';
 
 @injectable()
 export class BlobStorageService {
-    constructor(
+  constructor(
         @inject(TYPES.MessageService) private messageService: MessageService,
-      ){}
+        @inject(TYPES.TemplateService) private templateService: TemplateService
+      ){ }
 
   async uploadStorageBlockBlob(imageFileName: string,
         imageFullFileName: string) {
-
     let config = vscode.workspace.getConfiguration('clipImg');
+
     let { blobServiceClient, storageSharedKeyCredential } = await this.getBlobServiceClient(config);
 
     let container = blobServiceClient.getContainerClient(config.get('storageAccountContainer', 'clipimg-vscode'));
     await container.createIfNotExists();
-    let now = new Date();
-    let blobName = `${now.getFullYear()}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getDate().toString().padStart(2, '0')}/${imageFileName}`;
+
+    let blobName = await this.templateService.parseAndRender('templateBlobName',
+      {
+        filename: imageFileName
+      });
+
     let blobClient = container.getBlockBlobClient(blobName);
 
     await blobClient.uploadFile(imageFullFileName);
@@ -41,10 +47,21 @@ export class BlobStorageService {
       storageSharedKeyCredential
     );
 
-    return `${decodeURIComponent(blobClient.url)}?${sasQuery}`;
+    let blobUri = await this.templateService.parseAndRender(
+      'templateBlobUri',
+      {
+        container: container.containerName,
+        blob: blobName,
+        uri: decodeURIComponent(blobClient.url),
+        sas: sasQuery,
+        filename: imageFileName
+      }
+    );
+
+    return blobUri;
   }
 
-  private async getBlobServiceClient(config : vscode.WorkspaceConfiguration) {
+  private async getBlobServiceClient(config: vscode.WorkspaceConfiguration) {
     let { storageAccountName, storageAccountKey, storageAccountUrl } = await this.getStorageAccount(config);
 
     let storageSharedKeyCredential = new StorageSharedKeyCredential(storageAccountName,

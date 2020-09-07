@@ -60,6 +60,30 @@
 					],
 					"default": "clipimg-vscode",
 					"description": "Specifies the storage account container to use."
+				},
+				"clipImg.templateMarkdown": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "![{{alt}}]({{uri}})",
+					"description": "Specifies the markdown tag template to use (available outputs: alt, uri)."
+				},
+				"clipImg.templateBlobName": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "{{\"now\" | date: \"%Y/%m/%d\"}}/{{filename}}",
+					"description": "Specifies the blob filename template to use (available outputs: filename)."
+				},
+				"clipImg.templateBlobUri": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "{{uri}}?{{sas}}",
+					"description": "Specifies the blob uri template to use (available outputs: container, blob, uri, sas, filename)."
 				}
 			}
 		}
@@ -85,6 +109,7 @@
 		"guid-typescript": "^1.0.9",
 		"inversify": "^5.0.1",
 		"keytar": "^6.0.1",
+		"liquidjs": "^9.15.0",
 		"reflect-metadata": "^0.1.13"
 	}
 }
