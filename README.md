@@ -16,7 +16,7 @@ This extension brings support for [ClipImg](https://github.com/gep13-oss/clipimg
 
 ClipImg will let you take an image from your clipboard and automatically uploaded it to Azure blob storage, and the markdown needed to display that image inserted to the editor.
 
-![Example usage ClipImg](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/056f020b-dbf5-4ce7-8fee-60364f53e0c4.gif?sp=r&st=2020-09-06T15:34:59Z&se=2020-09-07T15:34:59Z&sv=2019-12-12&sr=b&sig=NXyOB4U9yMsU8si1L8D%2Bptgb6GBz8jtDOajqN%2FoQflQ%3D)
+![Example usage ClipImg](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/056f020b-dbf5-4ce7-8fee-60364f53e0c4.gif?sv=2019-02-02&st=2020-09-06T18%3A53%3A00Z&se=2030-09-07T18%3A53%3A00Z&sr=b&sp=r&sig=WODnerlYHYnA869E4TLJGI1wphm9uj6S%2FhI3kl1H3YI%3D)
 
 ## Commands
 
