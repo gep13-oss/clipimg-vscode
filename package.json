@@ -1,0 +1,90 @@
+{
+	"name": "clipimg-vscode",
+	"displayName": "ClipImg",
+	"description": "Extension that provides the ability to upload image from clipboard to Azure Storage",
+	"publisher": "gep13",
+	"version": "0.1.0",
+	"icon": "images/clipimg.png",
+	"license": "MIT",
+	"galleryBanner": {
+		"color": "#DCEBFC",
+		"theme": "light"
+	},
+	"bugs": {
+		"url": "https://github.com/gep13-oss/clipimg-vscode/issues"
+	},
+	"homepage": "https://github.com/gep13-oss/clipimg-vscode",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gep13-oss/clipimg-vscode"
+	},
+	"engines": {
+		"vscode": "^1.48.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.clipImg"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.clipImg",
+				"title": "Paste Image as Markdown"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.clipImg",
+				"key": "ctrl+alt+v",
+				"mac": "ctrl+cmd+v"
+			}
+		],
+		"configuration": {
+			"title": "ClipImg",
+			"properties": {
+				"clipImg.storageAccountName": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": null,
+					"description": "Specifies the storage account name to use."
+				},
+				"clipImg.storageAccountContainer": {
+					"type": [
+						"string",
+						"null"
+					],
+					"default": "clipimg-vscode",
+					"description": "Specifies the storage account container to use."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.0.3",
+		"@types/node": "^14.6.4",
+		"@types/vscode": "^1.48.0",
+		"mocha": "^8.1.3",
+		"tslint": "^6.1.3",
+		"typescript": "^4.0.2",
+		"vscode-test": "^1.4.0"
+	},
+	"dependencies": {
+		"@azure/storage-blob": "^12.2.0-preview.1",
+		"guid-typescript": "^1.0.9",
+		"inversify": "^5.0.1",
+		"keytar": "^6.0.1",
+		"reflect-metadata": "^0.1.13"
+	}
+}
