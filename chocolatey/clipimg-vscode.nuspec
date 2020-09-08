@@ -5,12 +5,12 @@
     <id>clipimg-vscode</id>
     <version>0.0</version>
     <owners>Gary Ewan Park</owners>
-    <title>CI/CD Assets VSCode extension</title>
+    <title>ClipImg VSCode extension</title>
     <authors>Gary Ewan Park</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://github.com/gep13-oss/clipimg-vscode</projectUrl>
     <!--<iconUrl></iconUrl>-->
-    <copyright>Copyright (c) 2019 Gary Ewan Park</copyright>
+    <copyright>Copyright (c) 2020 Gary Ewan Park</copyright>
     <licenseUrl>https://github.com/gep13-oss/clipimg-vscode/blob/develop/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/gep13-oss/clipimg-vscode</projectSourceUrl>
@@ -18,12 +18,12 @@
     <tags>clipimg-vscode vscode extension</tags>
     <summary>ClipImg Extension for Visual Studio Code</summary>
     <description>
-This extension brings support for ClipImg to Visual Studio Code.
+Extension that provides the ability to upload image from clipboard to Azure Storage.
     </description>
     <releaseNotes>
 Full release notes found on [GitHub Release Page](https://github.com/gep13-oss/clipimg-vscode/releases)</releaseNotes>
     <dependencies>
-      <dependency id="vscode" version="1.33.0" /> <!-- Should be set to the minimum version the extension supports -->
+      <dependency id="vscode" version="1.48.0" /> <!-- Should be set to the minimum version the extension supports -->
       <dependency id="chocolatey-vscode.extension" version="1.0.0" />
     </dependencies>
   </metadata>

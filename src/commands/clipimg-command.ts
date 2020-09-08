@@ -8,14 +8,15 @@ import { BlobStorageService } from '../blobstorage-service';
 import * as path from 'path';
 import { Guid } from "guid-typescript";
 import { promises as fs } from 'fs';
+import { TemplateService } from '../template-service';
 
 @injectable()
 export class ClipImgCommand implements ICommand {
-
   constructor(
     @inject(TYPES.MessageService) private messageService: MessageService,
     @inject(TYPES.ClipboardService) private clipBoardService: ClipboardService,
-    @inject(TYPES.BlobStorageService) private blobStorageService: BlobStorageService
+    @inject(TYPES.BlobStorageService) private blobStorageService: BlobStorageService,
+    @inject(TYPES.TemplateService) private templateService: TemplateService
   ) {
   }
 
@@ -50,7 +51,7 @@ export class ClipImgCommand implements ICommand {
 
           await fs.unlink(imageFullFileName);
 
-          this.insertImageMarkdown(editor, altText, uri);
+          await this.insertImageMarkdown(editor, altText, uri);
         }
         catch(e)
         {
@@ -65,16 +66,19 @@ export class ClipImgCommand implements ICommand {
     }
   }
 
-  private insertImageMarkdown(editor: vscode.TextEditor, altText: any, uri: string) {
+  private async insertImageMarkdown(editor: vscode.TextEditor, altText: any, uri: string) {
     let selection = editor.selection;
+    let imageFilePath = await this.templateService.parseAndRender(
+      'templateMarkdown',
+      {
+        alt:altText,
+        uri: uri
+      }
+    );
 
-    editor.edit(edit => {
+    editor.edit(edit =>  {
       let current = selection;
-      let prefix = '![';
-      let middle = '](';
-      let suffix = ')';
 
-      let imageFilePath = `${prefix}${altText}${middle}${uri}${suffix}`;
       if (current.isEmpty) {
         edit.insert(current.start, imageFilePath);
       }

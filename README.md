@@ -16,7 +16,7 @@ This extension brings support for [ClipImg](https://github.com/gep13-oss/clipimg
 
 ClipImg will let you take an image from your clipboard and automatically uploaded it to Azure blob storage, and the markdown needed to display that image inserted to the editor.
 
-![Example usage ClipImg](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/056f020b-dbf5-4ce7-8fee-60364f53e0c4.gif?sp=r&st=2020-09-06T15:34:59Z&se=2020-09-07T15:34:59Z&sv=2019-12-12&sr=b&sig=NXyOB4U9yMsU8si1L8D%2Bptgb6GBz8jtDOajqN%2FoQflQ%3D)
+![Example usage ClipImg](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/056f020b-dbf5-4ce7-8fee-60364f53e0c4.gif?sv=2019-02-02&st=2020-09-06T18%3A53%3A00Z&se=2030-09-07T18%3A53%3A00Z&sr=b&sp=r&sig=WODnerlYHYnA869E4TLJGI1wphm9uj6S%2FhI3kl1H3YI%3D)
 
 ## Commands
 
@@ -38,11 +38,11 @@ choco install clipimg-vscode
 
 1. Have an image in the clipboard
 1. Invoke command
-    - Pick `Paste Image as Markdown` from command palette!<br/>
+    * Pick `Paste Image as Markdown` from command palette!<br/>
     ![Paste Image as Markdown in Command Palette](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/1e3da757-6c35-cfd1-79e5-26df02236946.png?sv=2019-12-12&st=2020-09-05T14%3A51%3A52Z&se=2030-09-06T14%3A51%3A52Z&sr=b&sp=r&sig=vh4TxVmnFcoQfR4QVAHQ%2B2d1E4AciBXDVljZRpEUWAo%3D)<br/>or
-    - Use keyboard shortcut
-        - MacOS <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>v</kbd>
-        - Linux / Windows <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>v</kbd>
+    * Use keyboard shortcut
+        * MacOS <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>v</kbd>
+        * Linux / Windows <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>v</kbd>
 1. Enter image alt text<br/>![Image alt text input](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/9a2251d7-08cf-72e5-d158-4cc5676add06.png?sv=2019-12-12&st=2020-09-05T14%3A57%3A25Z&se=2030-09-06T14%3A57%3A25Z&sr=b&sp=r&sig=POT%2Bd0dfrAZxewCNhq8WUUj9xi3Uh23K170i2QcKip4%3D)
 1. The first time you execute the command in a workspace you'll be asked for the Azure storage account name to use<br/>
 ![Azure storage account input](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/8b160ae5-e702-a119-86e5-0d1324f4140c.png?sv=2019-12-12&st=2020-09-05T15%3A00%3A26Z&se=2030-09-06T15%3A00%3A26Z&sr=b&sp=r&sig=xESopPy9X9hGidHH4BGD4NPEn4%2BSYbKSqvJEifpmX8o%3D)<br/>
@@ -50,21 +50,65 @@ this is then stored in the current workspace settings.
 1. The first time you use a specific storage account on your computer it'll ask for the Azure storage account key.</br>
 ![Azure storage account key input](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/911030b1-7b7a-a642-5aad-ac32f512af0e.png?sv=2019-12-12&st=2020-09-05T15%3A04%3A43Z&se=2030-09-06T15%3A04%3A43Z&sr=b&sp=r&sig=WgECpUxYCyaDf%2FjXrOHDEuxG3a46QLwaccvCJkajiNw%3D)
 the key is stored in
-    - Windows: Credential manager
-    - MacOS: Keychain
-    - Linux: Secret Service API/libsecret
+    * Windows: Credential manager
+    * MacOS: Keychain
+    * Linux: Secret Service API/libsecret
 1. Image is uploaded and markdown for the newly uploaded image is inserted into the editor</br>
 ![Example image markdown](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/5319cd97-a3a9-17e9-86d4-3a21182ca5d0.png?sv=2019-12-12&st=2020-09-05T15%3A22%3A24Z&se=2030-09-06T15%3A22%3A24Z&sr=b&sp=r&sig=jwSUpS89MJa%2BvQ5GOQR%2BQ%2BcMI8MyUJq1tvBK83qIK30%3D)
+
+## Configuration
+
+### Azure Storage
+
+| Key                               | Default value    | Description                          |
+|-----------------------------------|------------------|--------------------------------------|
+| `clipImg.storageAccountName`      | `null`           | Name of storage account used, if not configured ClipImg will when invoked ask for it and store in workspace config. |
+| `clipImg.storageAccountContainer` | `clipimg-vscode` | Name of the storage account container used for uploading images, will be created if it doesn't exists. |
+
+#### Example
+
+In the below example Azure storage account is set to `mystorageaccount` and the container set to `public`.
+
+```json
+{
+    "clipImg.storageAccountName": "mystorageaccount",
+    "clipImg.storageAccountContainer": "public"
+}
+```
+
+### Templates
+
+Templates provide a powerful way to customize the markdown, names, uris, etc. generated to suit your needs.
+The liquid template language is what's used and you can read more about it at LiquidJS [
+Introduction to Liquid Template Language](https://liquidjs.com/tutorials/intro-to-liquid.html).
+
+| Key                               | Default value                                     | Description                          |
+|-----------------------------------|---------------------------------------------------|--------------------------------------|
+| `clipImg.templateMarkdown`        | `![{{alt}}]({{uri}})`                             | Controls the markdown inserted       |
+| `clipImg.templateBlobName`        | `{{\"now\" | date: \"%Y/%m/%d\"}}/{{filename}}`   | Controls the naming of the blob path |
+| `clipImg.templateBlobUri`         | `{{uri}}?{{sas}}`                                 | Controls the uri used within markdown tag, lets you i.e. exclude sas token and change base uri, which is useful i.e. when using a CDN in-front of the storage account.  |
+
+#### Example
+
+In the below example the first letter of alt text will always be upper case i.e. `car` will become `Car` when inserted, filename blob file name will use `Year/Month/Day/HourMinuteSecond_Filename` (i.e. `2020/09/08/085110_75f8e3ed-5340-872c-3f18-69c985e76311.png`) as blob name, and cdn for the uri used (i.e. `https://mycdnurl.azureedge.net/public/2020/09/08/085110_75f8e3ed-5340-872c-3f18-69c985e76311.png`).
+
+```json
+{
+    "clipImg.templateMarkdown": "![{{alt | capitalize}}]({{uri}})",
+    "clipImg.templateBlobName": "{{\"now\" | date: \"%Y/%m/%d\"}}/{{\"now\" | date: \"%H%M%S\"}}_{{filename}}",
+    "clipImg.templateBlobUri": "https://mycdnurl.azureedge.net/{{container}}/{{blob}}"
+}
+```
 
 ### Requirements
 
 * Azure Storage Account
-    - Name
-    - Key
+  * Name
+  * Key
     ![Azure portal storage account name and key](https://clipimg.blob.core.windows.net/clipimg-vscode/2020/09/06/b9c20692-3eb1-e630-bd03-89e95c902076.png?sv=2019-12-12&st=2020-09-05T16%3A02%3A30Z&se=2030-09-06T16%3A02%3A30Z&sr=b&sp=r&sig=aPEl4ploTM%2Bdy6t73n2eH8hBbWWRl9BNS09D0Y2%2FXlI%3D)
 * Linux
-    - xclip
-    - libsecret
+  * xclip
+  * libsecret
 
 ## Contributing
 
