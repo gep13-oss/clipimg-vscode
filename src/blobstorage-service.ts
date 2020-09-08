@@ -30,7 +30,7 @@ export class BlobStorageService {
 
     let blobClient = container.getBlockBlobClient(blobName);
 
-    await blobClient.uploadFile(imageFullFileName);
+    await blobClient.uploadFile(imageFullFileName, { blobHTTPHeaders: { blobContentType: 'image/png' } });
     let startsOn = new Date();
     let expiresOn = new Date();
     startsOn.setDate(startsOn.getDate() - 1);
