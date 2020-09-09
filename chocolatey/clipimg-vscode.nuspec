@@ -4,13 +4,13 @@
   <metadata>
     <id>clipimg-vscode</id>
     <version>0.0</version>
-    <owners>Gary Ewan Park</owners>
+    <owners>Gary Ewan Park, Mattias Karlsson</owners>
     <title>ClipImg VSCode extension</title>
-    <authors>Gary Ewan Park</authors>
+    <authors>Gary Ewan Park, Mattias Karlsson</authors>
     <!-- projectUrl is required for the community feed -->
     <projectUrl>https://github.com/gep13-oss/clipimg-vscode</projectUrl>
     <!--<iconUrl></iconUrl>-->
-    <copyright>Copyright (c) 2020 Gary Ewan Park</copyright>
+    <copyright>Copyright (c) 2020 Gary Ewan Park and Mattias Karlsson</copyright>
     <licenseUrl>https://github.com/gep13-oss/clipimg-vscode/blob/develop/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/gep13-oss/clipimg-vscode</projectSourceUrl>

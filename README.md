@@ -85,7 +85,7 @@ Introduction to Liquid Template Language](https://liquidjs.com/tutorials/intro-t
 | Key                               | Default value                                     | Description                          |
 |-----------------------------------|---------------------------------------------------|--------------------------------------|
 | `clipImg.templateMarkdown`        | `![{{alt}}]({{uri}})`                             | Controls the markdown inserted       |
-| `clipImg.templateBlobName`        | `{{\"now\" | date: \"%Y/%m/%d\"}}/{{filename}}`   | Controls the naming of the blob path |
+| `clipImg.templateBlobName`        | <code>{{\"now\" \| date: \"%Y/%m/%d\"}}/{{filename}}</code>   | Controls the naming of the blob path |
 | `clipImg.templateBlobUri`         | `{{uri}}?{{sas}}`                                 | Controls the uri used within markdown tag, lets you i.e. exclude sas token and change base uri, which is useful i.e. when using a CDN in-front of the storage account.  |
 
 #### Example

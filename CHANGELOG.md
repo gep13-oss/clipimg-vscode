@@ -1,7 +1,3 @@
 # Change Log
-All notable changes to the "clipimg-vscode" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-- Initial release
+All notable changes to the "clipimg-vscode" extension will be documented in this file on publish.

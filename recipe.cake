@@ -1,4 +1,4 @@
-#load "nuget:https://www.nuget.org/api/v2?package=Cake.VsCode.Recipe&version=0.1.0"
+#load "nuget:https://www.nuget.org/api/v2?package=Cake.VsCode.Recipe&version=0.2.0"
 
 if(BuildSystem.IsLocalBuild)
 {
@@ -19,6 +19,7 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "clipimg-vscode",
                             appVeyorAccountName: "gep13oss",
                             shouldRunGitVersion: true,
+                            shouldDownloadMilestoneReleaseNotes: true,
                             vsceVersionNumber:"1.78.0",
                             typeScriptVersionNumber: "4.0.2");
 
