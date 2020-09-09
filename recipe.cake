@@ -19,6 +19,7 @@ BuildParameters.SetParameters(context: Context,
                             repositoryName: "clipimg-vscode",
                             appVeyorAccountName: "gep13oss",
                             shouldRunGitVersion: true,
+                            shouldDownloadMilestoneReleaseNotes: true,
                             vsceVersionNumber:"1.78.0",
                             typeScriptVersionNumber: "4.0.2");
 
