@@ -26,6 +26,10 @@ The ClipImg Visual Studio Code provides the following commands:
   - MacOS <kbd>Ctrl</kbd> + <kbd>Cmd</kbd> + <kbd>v</kbd>
   - Linux / Windows <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>v</kbd>
 
+## Resources
+
+Short YouTube videos of each of the releases of this extension can be found in this [playlist](https://www.youtube.com/playlist?list=PL84yg23i9GBil69YLshQE8V1EOSEFwXNC).
+
 ## Installation
 
 You can either install this extension in the normal way, or you can choose to install using Chocolatey:
