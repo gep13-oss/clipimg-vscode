@@ -107,7 +107,7 @@
 	"dependencies": {
 		"@azure/storage-blob": "^12.2.0",
 		"guid-typescript": "^1.0.9",
-		"inversify": "^5.0.1",
+		"inversify": "^5.0.5",
 		"keytar": "^6.0.1",
 		"liquidjs": "^9.15.0",
 		"reflect-metadata": "^0.1.13"
