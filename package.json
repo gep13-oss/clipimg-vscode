@@ -108,7 +108,7 @@
 		"@azure/storage-blob": "^12.2.0",
 		"guid-typescript": "^1.0.9",
 		"inversify": "^5.0.1",
-		"keytar": "^6.0.1",
+		"keytar": "^7.6.0",
 		"liquidjs": "^9.15.0",
 		"reflect-metadata": "^0.1.13"
 	}
