@@ -89,8 +89,7 @@ export class BlobStorageService {
       storageAccountKey = await this.messageService.showInput('Provide storage account key', '', true) || '';
 
       if (storageAccountKey.length <= 0) {
-
-        throw error('Failed to fetch storage account key.');
+        throw new Error('Failed to fetch storage account key.');
       }
       await setPassword(storageAccountUrl, storageAccountName, storageAccountKey);
     }
