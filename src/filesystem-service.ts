@@ -25,13 +25,14 @@ export class FileSystemService {
   }
 
   async checkForExisting(path: string): Promise<boolean> {
-    if (fs.existsSync(path)) {
+    try {
+      await fs.promises.access(path);
       var message = `Overwrite the existing \'${path}\' file in this folder?`;
       var option = await this.messageService.showQuestion(message, "Overwrite");
       return option === "Overwrite";
+    } catch {
+      return true;
     }
-
-    return true;
   }
 
   createWriteStream(path: string) {

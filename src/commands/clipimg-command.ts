@@ -55,14 +55,14 @@ export class ClipImgCommand implements ICommand {
         }
         catch(e)
         {
-          this.messageService.showError(e);
+          this.messageService.showError(e instanceof Error ? e.message : 'An unknown error occurred.');
         }
       },
       (_, error)=>this.messageService.showError(error));
     }
     catch(e)
     {
-      this.messageService.showError(e);
+      this.messageService.showError(e instanceof Error ? e.message : 'An unknown error occurred.');
     }
   }
 
