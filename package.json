@@ -19,7 +19,7 @@
 		"url": "https://github.com/gep13-oss/clipimg-vscode"
 	},
 	"engines": {
-		"vscode": "^1.48.0"
+		"vscode": "^1.98.0"
 	},
 	"categories": [
 		"Other"
