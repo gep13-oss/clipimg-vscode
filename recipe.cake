@@ -1,10 +1,9 @@
-#load "nuget:https://www.nuget.org/api/v2?package=Cake.VsCode.Recipe&version=0.2.0"
+#load "nuget:https://www.nuget.org/api/v2?package=Cake.VsCode.Recipe&version=1.0.0"
 
 if(BuildSystem.IsLocalBuild)
 {
     Environment.SetVariableNames(
-        githubUserNameVariable: "CLIPIMGVSCODE_GITHUB_USERNAME",
-        githubPasswordVariable: "CLIPIMGVSCODE_GITHUB_PASSWORD"
+        githubTokenVariable: "CLIPIMGVSCODE_GITHUB_TOKEN"
     );
 }
 else
@@ -21,8 +20,12 @@ BuildParameters.SetParameters(context: Context,
                             shouldRunGitVersion: true,
                             shouldDownloadMilestoneReleaseNotes: true,
                             vsceVersionNumber:"2.15.0",
-                            typeScriptVersionNumber: "5.7.3");
+                            typeScriptVersionNumber: "5.7.3",
+                            preferDotNetGlobalToolUsage: true,
+                            marketPlacePublisher: "gep13");
 
-BuildParameters.PrintParameters(Context);
+BuildParameters.PrintParameters(context: Context);
+
+ToolSettings.SetToolSettings(context: Context);
 
 Build.Run();
